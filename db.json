@@ -1,52 +1,34 @@
 {
-  "plane": [
+  "aircrafts": [
     {
       "id": 1,
-      "program": "A320",
-      "phase": "Étude de faisabilité",
-      "type": "Transport passager"
+      "prog": "A350",
+      "design": true,
+      "development": false
     },
     {
       "id": 2,
-      "program": "A400M",
-      "phase": "Conception",
-      "type": "Militaire"
+      "prog": "A400M",
+      "design": false,
+      "development": true
     },
     {
       "id": 3,
-      "program": "A380",
-      "phase": "En service",
-      "type": "Transport passager"
+      "prog": "A380",
+      "design": false,
+      "development": true
     },
     {
       "id": 4,
-      "program": "A300",
-      "phase": "Construction",
-      "type": "Fret"
+      "prog": "A300",
+      "design": false,
+      "development": false 
     },
     {
       "id": 5,
-      "program": "A350",
-      "phase": "Définition",
-      "type": "Transport passager"
-    },
-    {
-      "id": 6,
-      "program": "A330",
-      "phase": "Clôturé",
-      "type": "Transport passager"
-    },
-    {
-      "id": 7,
-      "program": "A310",
-      "phase": "En service",
-      "type": "Fret"
-    },
-    {
-      "id": 8,
-      "program": "A380",
-      "phase": "Étude de faisabilité",
-      "type": "Avion d'affaires"
+      "prog": "A350",
+      "design": true,
+      "development": true
     }
   ],
 
@@ -55,13 +37,13 @@
       "id": 1,
       "email": "elbab@gmail.com",
       "password": "1234",
-      "roles": ["ADMIN", "USER"]
+      "roles": ["ADMIN"]
     },
     {
       "id": 2,
       "email": "hugo@gmail.com",
       "password": "1234",
-      "roles": ["USER"]
+      "roles": ["ADMIN"]
     }
   ]
 }
