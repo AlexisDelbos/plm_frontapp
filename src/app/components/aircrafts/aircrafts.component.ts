@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { ActionEvent } from 'src/app/model/ActionEvent';
-import { Aircraft } from 'src/app/model/aircraft.component';
+import { Aircraft } from 'src/app/model/aircraft.model';
 import { AppDataState, DataStateEnum } from 'src/app/model/aircraft.state';
 import { AircraftsActionsTypes } from 'src/app/model/AircraftActionsTypes';
 import { AircraftService } from 'src/app/services/aircraft.service';

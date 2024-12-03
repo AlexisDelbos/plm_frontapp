@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import * as bcrypt from 'bcrypt-js';
 import { Admin } from '../model/admin.model';
 import { environment } from 'src/environments/environment';
 
@@ -50,8 +51,8 @@ export class AuthenticateService {
   isLogin(): boolean {
     if (!this.Admin) return false;
     const Admin = JSON.stringify(this.Admin);
-    const AdminCryptedData = this.encryptDataAdmin(Admin);
-    localStorage.setItem('currentAdmin', AdminCryptedData);
+    const AdminData = this.DataAdmin(Admin);
+    localStorage.setItem('currentAdmin', AdminData);
     return this.Admin ? true : false;
   }
 
