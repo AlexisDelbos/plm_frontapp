@@ -21,8 +21,8 @@ export class AuthenticateService {
   constructor() {
     let localStorageAdmin = localStorage.getItem('currentAdmin');
     if (localStorageAdmin) {
-      const decryptDataAdmin = this.decryptDataAdmin(localStorageAdmin);
-      this.Admin = JSON.parse(decryptDataAdmin);
+      const DataAdmin = this.DataAdmin(localStorageAdmin);
+      this.Admin = JSON.parse(DataAdmin);
     }
   }
 

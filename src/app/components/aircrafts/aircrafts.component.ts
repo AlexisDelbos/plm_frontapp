@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { ActionEvent } from 'src/app/model/ActionEvent';
-import { Aircraft } from 'src/app/model/aircraft.model';
+import { Aircraft } from 'src/app/model/aircraft.component';
 import { AppDataState, DataStateEnum } from 'src/app/model/aircraft.state';
 import { AircraftsActionsTypes } from 'src/app/model/AircraftActionsTypes';
 import { AircraftService } from 'src/app/services/aircraft.service';
@@ -13,7 +13,7 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./aircrafts.component.css']
 })
 export class AircraftsComponent implements OnInit {
-  
+
  aircrafts$: Observable<AppDataState<Aircraft[]>> | null = null;
  error = null;
 
@@ -61,16 +61,13 @@ export class AircraftsComponent implements OnInit {
       catchError(err => of({ dataState: DataStateEnum.ERROR, errorMessage: err.message }))
     );
   }
-  
-
-
   onActionEvent($actionEvent : ActionEvent){
     switch($actionEvent.type){
       case AircraftsActionsTypes.GET_ALL_AIRCRAFTS :
         this.getAllAircrafts();
         break;
 
-      case AircraftsActionsTypes.GET_DEVELOPMENT_AIRCRAFTS : 
+      case AircraftsActionsTypes.GET_DEVELOPMENT_AIRCRAFTS :
       this.getDevelopmentAircraft();
       break;
 
@@ -78,8 +75,8 @@ export class AircraftsComponent implements OnInit {
       this.getAircraftByDesign();
       break;
 
-      case AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS : 
-      this.getAircraftBySearch($actionEvent.payload);
+      case AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS :
+     // this.search($actionEvent.payload);
       break;
     }
 

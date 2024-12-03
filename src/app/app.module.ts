@@ -13,14 +13,13 @@ import { AdminComponent } from './components/admin/admin.component';
     AppComponent,
     AircraftsComponent,
     AircraftsNavbarComponent,
-    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, 
-    ReactiveFormsModule 
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
