@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Aircraft } from '../model/aircraft.component';
+import { Aircraft } from '../model/aircraft.model';
 
 
 @Injectable({
@@ -24,8 +24,15 @@ export class AircraftService {
     return this.http.get<Aircraft[]>(environment.host+"/aircrafts?development=true");
   }
 
-  public getAircraftByMsn(msn : number ): Observable<Aircraft>{
-    return this.http.get<Aircraft>(environment.host+"/aircrafts/" + msn);
+  public getAircraftById(id : number ): Observable<Aircraft>{
+    return this.http.get<Aircraft>(environment.host+"/aircrafts/" + id);
   }
+  
+  public searchAircrafts(program: string): Observable<Aircraft[]> {
+    const url = `${environment.host}/aircrafts?prog_like=${program}`; 
+    return this.http.get<Aircraft[]>(url);
+  }
+  
+  
   
 }

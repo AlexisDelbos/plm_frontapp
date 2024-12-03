@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { ActionEvent } from 'src/app/model/ActionEvent';
-import { Aircraft } from 'src/app/model/aircraft.component';
+import { Aircraft } from 'src/app/model/aircraft.model';
 import { AppDataState, DataStateEnum } from 'src/app/model/aircraft.state';
 import { AircraftsActionsTypes } from 'src/app/model/AircraftActionsTypes';
 import { AircraftService } from 'src/app/services/aircraft.service';
@@ -53,10 +53,17 @@ export class AircraftsComponent implements OnInit {
     )
   }
 
+  getAircraftBySearch(program: string) {
+    this.aircrafts$ = this.airCraftService.searchAircrafts(program).pipe(
+      map(data => ({ dataState: DataStateEnum.LOADED, data: data })),
 
-  search(){
-
+      startWith({ dataState: DataStateEnum.LOADING }),
+      catchError(err => of({ dataState: DataStateEnum.ERROR, errorMessage: err.message }))
+    );
   }
+  
+
+
   onActionEvent($actionEvent : ActionEvent){
     switch($actionEvent.type){
       case AircraftsActionsTypes.GET_ALL_AIRCRAFTS :
@@ -72,7 +79,7 @@ export class AircraftsComponent implements OnInit {
       break;
 
       case AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS : 
-     // this.search($actionEvent.payload);
+      this.getAircraftBySearch($actionEvent.payload);
       break;
     }
 

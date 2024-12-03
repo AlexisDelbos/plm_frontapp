@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm">
-<ul class="navbar navbar-nav">
+  <ul class="navbar navbar-nav align-items-center">
     <li>
       <button class="btn btn-outline-info m-2" (click)="getAllAircrafts()">
         Avions
@@ -13,14 +13,17 @@
       >
         Development
       </button>
-
-      <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm)">
-
-            <input type="text" formControlName="program" class="form-control">
-      
+    </li>
+    <li class="d-flex align-items-center">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex ms-2">
+        <input
+          type="text"
+          formControlName="prog"
+          class="form-control me-2"
+          placeholder="Entrez un nom d'avion"
+        >
+        <button type="submit" class="btn btn-primary">Search</button>
       </form>
-
-      
     </li>
   </ul>
 </nav>

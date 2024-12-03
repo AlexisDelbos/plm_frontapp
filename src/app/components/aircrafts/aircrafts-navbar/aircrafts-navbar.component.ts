@@ -20,20 +20,27 @@ export class AircraftsNavbarComponent implements OnInit {
 
    let aircraft = this.aircraftService.getAircrafts();
     this.searchForm = new FormGroup({
-      program : new FormControl(aircraft),
+      prog : new FormControl(aircraft),
     })
   }
 
   ngOnInit(): void {
   }
 
+  
+
   getAllAircrafts(){
     this.eventService.publishEvent({type: AircraftsActionsTypes.GET_ALL_AIRCRAFTS, payload : null})
   }
 
-  onSearch(value : any){
-    this.eventEmitter.emit({type: AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS, payload : value});
+  
+  onSearch() {
+    const prog = this.searchForm.get('prog')?.value;
+    if (prog) {
+      this.eventService.publishEvent({ type: AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS, payload: prog });
+    }
   }
+  
 
   getAircraftByDesign(){
     this.eventEmitter.emit({type : AircraftsActionsTypes.GET_DESIGNED_AIRCRAFTS, payload : null});
