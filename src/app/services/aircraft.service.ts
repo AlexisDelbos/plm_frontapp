@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Aircraft } from '../model/aircraft.model';
+import { Admin } from '../model/admin.model';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AircraftService {
   constructor( private http : HttpClient) { }
 
   public getAircrafts(): Observable<Aircraft[]>{
-    return this.http.get<Aircraft[]>(environment.host +"/aircrafts");    
+    return this.http.get<Aircraft[]>(environment.host +"/aircrafts");
   }
 
   public getDesignedAircrafts(): Observable<Aircraft[]>{
@@ -27,12 +28,14 @@ export class AircraftService {
   public getAircraftById(id : number ): Observable<Aircraft>{
     return this.http.get<Aircraft>(environment.host+"/aircrafts/" + id);
   }
-  
+
   public searchAircrafts(program: string): Observable<Aircraft[]> {
-    const url = `${environment.host}/aircrafts?prog_like=${program}`; 
+    const url = `${environment.host}/aircrafts?prog_like=${program}`;
     return this.http.get<Aircraft[]>(url);
   }
-  
-  
-  
+
+  public getAdmin(email : String){
+    return this.http.get<Admin>(environment.host + `/admins?email=${email}`);
+  }
+
 }
