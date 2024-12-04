@@ -13,17 +13,19 @@ import { GetAircraftByIdAction } from 'src/app/ngrx/aircrafts.actions';
 export class AircraftComponent implements OnInit {
 
   aircraft$: Observable<AircraftsState>;
+
   readonly aircraftsStateEnum = AircraftsStateEnum;
 
   constructor(private store: Store<any>, private route: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
-    const aircraftId = this.route.snapshot.paramMap.get('id');
-    if (aircraftId) {
-      const idNumber = Number(aircraftId);
-      this.store.dispatch(new GetAircraftByIdAction(idNumber));
+    const aircraftId = this.route.snapshot.params['id'];
+    if (aircraftId > 0) {
+      this.store.dispatch(new GetAircraftByIdAction(aircraftId));
     }
 }
+  
+
 
 onBack() {
   this.router.navigateByUrl('/aircrafts');

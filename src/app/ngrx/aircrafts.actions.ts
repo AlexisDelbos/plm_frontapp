@@ -1,5 +1,7 @@
 import { Action } from "@ngrx/store";
 import { Aircraft } from "../model/aircraft.model";
+
+
 export enum AircraftsActionsTypes{
     GET_ALL_AIRCRAFTS = "[Aircrafts] Get All Aircrafts",
     GET_DESIGNED_AIRCRAFTS = "[Aircrafts] Get Designed Aircrafts",
@@ -10,6 +12,11 @@ export enum AircraftsActionsTypes{
     GET_AIRCRAFT_BY_ID = "[Aircrafts] Get Aircraft By Id",
     GET_AIRCRAFT_BY_ID_SUCCESS = "[Aircrafts] Get Aircraft By Id Success",
     GET_AIRCRAFT_BY_ID_ERROR = "[Aircrafts] Get Aircraft By Id Error",
+}
+
+export enum OperationsActionsTypes{
+    ADD_OPERATION = "[Operation] Add one ",
+    REMOVE_OPERATION = "[Operation] Remove one "
 
 }
 
@@ -69,5 +76,15 @@ export class GetAircraftByIdActionError implements Action {
     constructor(public payload: string) {}  
 }
 
+export class AddOneOperation implements Action {
+    type = OperationsActionsTypes.ADD_OPERATION;
+    constructor(public payload : any){}
+}
 
-export type AircraftsAction = GetAllAircraftsAction | GetAircraftByIdAction | GetAircraftByIdActionSuccess |GetAircraftByIdActionError | GetOnSearchBarAircraft | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError ;
+export class RemoveOperation implements Action {
+    type = OperationsActionsTypes.REMOVE_OPERATION;
+    constructor(public payload : any){}
+}
+
+
+export type AircraftsAction = GetAllAircraftsAction | GetAircraftByIdAction | GetAircraftByIdActionSuccess |GetAircraftByIdActionError | GetOnSearchBarAircraft | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError | AddOneOperation  ;

@@ -1,5 +1,5 @@
 import { Aircraft } from "../model/aircraft.model"
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity'; // Importation nécessaire
+import { EntityState } from '@ngrx/entity'; 
 
 export enum AircraftsStateEnum{
     LOADING = " Loading ",
@@ -8,16 +8,13 @@ export enum AircraftsStateEnum{
     INITIAL = " Initial",
 }
 
-export interface AircraftsState extends EntityState<Operation> {
+
+export interface AircraftsState extends EntityState<Aircraft> {
     aircrafts : Aircraft[],
     selectedAircraft: Aircraft | null; 
     errorMessage  : string,
     dataState : AircraftsStateEnum
 }
-
-
-export const adapter : EntityAdapter <Operation>({});
-
 
 export const initState : AircraftsState  = {
     aircrafts : [],
@@ -25,5 +22,5 @@ export const initState : AircraftsState  = {
     errorMessage:"",
     dataState : AircraftsStateEnum.INITIAL,
     ids : [],
-    entities : []
+    entities : {}
 }

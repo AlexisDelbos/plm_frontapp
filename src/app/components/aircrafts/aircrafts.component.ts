@@ -16,6 +16,7 @@ export class AircraftsComponent implements OnInit {
 
  readonly aircraftsStateEnum = AircraftsStateEnum;
  countAlertAircrafts$ : Observable<number> | undefined;
+ 
   constructor(  private store : Store <any>, private router : Router ) {
     this.countAlertAircrafts$ = store.select(selectCountAlertAircrafts);
    }

@@ -74,7 +74,8 @@ export class AircraftsEffects {
             })
         )
     );
-    getAircraftByIdEffect: Observable<Action> = createEffect(() =>
+    
+    getAircraftById: Observable<Action> = createEffect(() =>
         this.effectActions.pipe(
             ofType(AircraftsActionsTypes.GET_AIRCRAFT_BY_ID),
             mergeMap((action: GetAircraftByIdAction) => {
