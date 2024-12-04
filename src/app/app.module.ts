@@ -12,6 +12,7 @@ import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AircraftsReducer } from './ngrx/aircrafts.reducer';
 import { AircraftsEffects } from './ngrx/aircrafts.effects';
 import { AircraftComponent } from './components/aircraft/aircraft.component';
+import { ConnexionComponent } from './components/connexion/connexion.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AircraftComponent } from './components/aircraft/aircraft.component';
     AircraftsComponent,
     AircraftsNavbarComponent,
     AircraftComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,

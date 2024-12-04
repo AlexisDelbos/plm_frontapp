@@ -1,7 +1,10 @@
 import { Action } from "@ngrx/store";
 import { Aircraft } from "../model/aircraft.model";
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 export enum AircraftsActionsTypes{
     GET_ALL_AIRCRAFTS = "[Aircrafts] Get All Aircrafts",
     GET_DESIGNED_AIRCRAFTS = "[Aircrafts] Get Designed Aircrafts",
@@ -61,6 +64,7 @@ export class GetAllAircraftsActionError implements Action {
     }
 }
 
+<<<<<<< Updated upstream
 export class GetAircraftByIdAction implements Action {
     type = AircraftsActionsTypes.GET_AIRCRAFT_BY_ID;
     constructor(public payload: number) {}  
@@ -88,3 +92,6 @@ export class RemoveOperation implements Action {
 
 
 export type AircraftsAction = GetAllAircraftsAction | GetAircraftByIdAction | GetAircraftByIdActionSuccess |GetAircraftByIdActionError | GetOnSearchBarAircraft | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError | AddOneOperation  ;
+=======
+export type AircraftsAction = GetAllAircraftsAction | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError ;
+>>>>>>> Stashed changes
