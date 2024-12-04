@@ -15,7 +15,7 @@
       </button>
     </li>
     <li class="d-flex align-items-center">
-      <form [formGroup]="searchForm" (ngSubmit)="GetOnSearchBarAircraft()" class="d-flex ms-2">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex ms-2">
         <input
           type="text"
           formControlName="prog"

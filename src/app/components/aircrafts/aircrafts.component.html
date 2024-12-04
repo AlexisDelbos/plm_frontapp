@@ -23,12 +23,21 @@
         <th>Design</th>
         <th>Development</th>
       </tr>
-      <tr *ngFor="let aircraft of state.aircrafts">
+      <tr *ngFor="let aircraft of state.aircrafts" [routerLink]="['/aircrafts', aircraft.id]">
         <td>{{ aircraft.id }}</td>
         <td>{{ aircraft.prog }}</td>
         <td>{{ aircraft.design }}</td>
         <td>{{ aircraft.development }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="onSelect(aircraft.id)">
+            View Details
+          </button>
+        </td>
       </tr>
     </table>
+  </ng-container>
+  
+  <ng-container *ngIf="countAlertAircrafts$ | async as countAircrafts">
+    <h6 class="text-danger"> total aircrafts under design & dev : {{countAircrafts}}</h6>
   </ng-container>
 </ng-container>

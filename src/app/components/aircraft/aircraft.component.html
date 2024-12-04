@@ -1,1 +1,32 @@
-<p>aircraft works!</p>
+<div class="container">
+  <ng-container *ngIf="aircraft$ | async as state" [ngSwitch]="state.dataState">
+    <ng-container *ngSwitchCase="aircraftsStateEnum.INITIAL">
+      <div class="p-2">Initial</div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="aircraftsStateEnum.LOADING">
+      <div class="p-2">Loading...</div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="aircraftsStateEnum.ERROR">
+      <div class="p-2 text-danger">{{ state.errorMessage }}</div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="aircraftsStateEnum.LOADED">
+      <div class="card" *ngIf="state.selectedAircraft">
+        <div class="card-header">
+          Aircraft Details
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ state.selectedAircraft.prog }}</h5>
+          <div class="card-text">
+            <p><strong>ID:</strong> {{ state.selectedAircraft.id }}</p>
+            <p><strong>Design:</strong> {{ state.selectedAircraft.design }}</p>
+            <p><strong>Development:</strong> {{ state.selectedAircraft.development }}</p>
+          </div>
+          <button class="btn btn-primary" (click)="onBack()">Back to List</button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

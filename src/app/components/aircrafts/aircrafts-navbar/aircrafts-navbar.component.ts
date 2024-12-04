@@ -1,7 +1,8 @@
-import { GetOnSearchBarAircraft } from './../../../ngrx/aircrafts.actions';
+import { GetAircraftByIdAction, GetOnSearchBarAircraft } from './../../../ngrx/aircrafts.actions';
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AircraftsActionsTypes, GetAllAircraftsAction, GetDesignedAircraftsAction, GetDevelopmentAircraftsAction } from 'src/app/ngrx/aircrafts.actions';
 import { AircraftService } from 'src/app/services/aircraft.service';
@@ -18,7 +19,7 @@ export class AircraftsNavbarComponent implements OnInit {
   
   searchForm : FormGroup;
   
-  constructor(private store : Store<any>, private aircraftService : AircraftService, private eventService : EventService) { 
+  constructor(private store : Store<any>, private router : Router,  private aircraftService : AircraftService, private eventService : EventService) { 
 
    let aircraft = this.aircraftService.getAircrafts();
     this.searchForm = new FormGroup({
@@ -29,7 +30,11 @@ export class AircraftsNavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  viewAircraftDetails(id: number): void {
+    this.router.navigate([`/aircrafts/${id}`]);
+
+    this.store.dispatch(new GetAircraftByIdAction(id));
+  }
 
   getAllAircrafts(){
     this.store.dispatch(new GetAllAircraftsAction({}));
@@ -39,7 +44,7 @@ export class AircraftsNavbarComponent implements OnInit {
   onSearch() {
     const prog = this.searchForm.get('prog')?.value;
     if (prog) {
-      this.eventService.publishEvent({ type: AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS, payload: prog });
+      this.store.dispatch(new GetOnSearchBarAircraft({ prog }));
     }
   }
   
@@ -52,8 +57,6 @@ export class AircraftsNavbarComponent implements OnInit {
     this.store.dispatch( new GetDevelopmentAircraftsAction({}))
   }
 
-  GetOnSearchBarAircraft(){
-    this.store.dispatch( new GetOnSearchBarAircraft({}))
-  }
+
 
 }

@@ -27,6 +27,7 @@ export class AircraftService {
 
   public getAircraftById(id : number ): Observable<Aircraft>{
     return this.http.get<Aircraft>(environment.host+"/aircrafts/" + id);
+
   }
 
   public searchAircrafts(program: string): Observable<Aircraft[]> {

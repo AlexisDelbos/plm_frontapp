@@ -7,6 +7,9 @@ export enum AircraftsActionsTypes{
     GET_SEARCH_AIRCRAFTS = "[Aircrafts] Get Search Aircrafts",
     GET_ALL_AIRCRAFTS_SUCCESS = "[Aircrafts] Get Success Aircrafts",
     GET_ALL_AIRCRAFTS_ERROR = "[Aircrafts] Get Error Aircrafts",
+    GET_AIRCRAFT_BY_ID = "[Aircrafts] Get Aircraft By Id",
+    GET_AIRCRAFT_BY_ID_SUCCESS = "[Aircrafts] Get Aircraft By Id Success",
+    GET_AIRCRAFT_BY_ID_ERROR = "[Aircrafts] Get Aircraft By Id Error",
 
 }
 
@@ -31,11 +34,10 @@ export class GetDevelopmentAircraftsAction implements Action {
 }
 
 export class GetOnSearchBarAircraft implements Action {
-    type : AircraftsActionsTypes = AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS;
-    constructor(public payload : any){
-
-    }
+    type: AircraftsActionsTypes = AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS;
+    constructor(public payload: { prog: string }) {} 
 }
+
 
 
 export class GetAllAircraftsActionSuccess implements Action {
@@ -52,5 +54,20 @@ export class GetAllAircraftsActionError implements Action {
     }
 }
 
+export class GetAircraftByIdAction implements Action {
+    type = AircraftsActionsTypes.GET_AIRCRAFT_BY_ID;
+    constructor(public payload: number) {}  
+}
 
-export type AircraftsAction = GetAllAircraftsAction | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError ;
+export class GetAircraftByIdActionSuccess implements Action {
+    type = AircraftsActionsTypes.GET_AIRCRAFT_BY_ID_SUCCESS;
+    constructor(public payload: Aircraft) {}  
+}
+
+export class GetAircraftByIdActionError implements Action {
+    type = AircraftsActionsTypes.GET_AIRCRAFT_BY_ID_ERROR;
+    constructor(public payload: string) {}  
+}
+
+
+export type AircraftsAction = GetAllAircraftsAction | GetAircraftByIdAction | GetAircraftByIdActionSuccess |GetAircraftByIdActionError | GetOnSearchBarAircraft | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError ;
