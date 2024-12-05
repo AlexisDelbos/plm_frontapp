@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
-import { AircraftsState, AircraftsStateEnum, initState } from "./aircrafts.state";
-import { AircraftsAction, AircraftsActionsTypes, OperationsActionsTypes } from "../ngrx/aircrafts.actions";
+import { AircraftsState, AircraftsStateEnum, EntitiesState, EntitiesStateEnum, initState, initStateEntities } from "./aircrafts.state";
+import { AircraftsAction, AircraftsActionsTypes, EntitiesActionsTypes, GetAllEntitiesActionSuccess, OperationsActionsTypes } from "../ngrx/aircrafts.actions";
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
 import { Aircraft } from "../model/aircraft.model";
 
@@ -12,6 +12,7 @@ export const initialState : AircraftsState = adapter.getInitialState({
     selectedAircraft: null, 
     errorMessage:"",
     dataState : AircraftsStateEnum.INITIAL,
+    dataStateEntities : EntitiesStateEnum.INITIAL,
     ids : [],
     entities : []
 })
@@ -38,8 +39,7 @@ export function AircraftsReducer(state: AircraftsState = initState, action: Acti
 
 
         // By ID
-        case AircraftsActionsTypes.GET_AIRCRAFT_BY_ID:
-            
+        case AircraftsActionsTypes.GET_AIRCRAFT_BY_ID:            
             return { ...state, dataState: AircraftsStateEnum.LOADING };
 
         case AircraftsActionsTypes.GET_AIRCRAFT_BY_ID_SUCCESS:
@@ -47,9 +47,7 @@ export function AircraftsReducer(state: AircraftsState = initState, action: Acti
             return {...state, dataState: AircraftsStateEnum.LOADED, selectedAircraft: (<AircraftsAction>action).payload };
         
         case AircraftsActionsTypes.GET_AIRCRAFT_BY_ID_ERROR:
-            return {...state, dataState: AircraftsStateEnum.ERROR, errorMessage: (<AircraftsAction>action).payload};
-    
-
+            return {...state, dataState: AircraftsStateEnum.ERROR, errorMessage: (<AircraftsAction>action).payload};      
 
         // Ajouter & Supprimer
         case OperationsActionsTypes.ADD_OPERATION:
@@ -62,3 +60,24 @@ export function AircraftsReducer(state: AircraftsState = initState, action: Acti
             return { ...state }
     }
 }
+
+export function EntitiesReducer(state: EntitiesState = initStateEntities, action: Action): EntitiesState {
+    switch (action.type) {
+      case EntitiesActionsTypes.GET_ALL_ENTITIES:
+        return { ...state, dataStateEntities: EntitiesStateEnum.LOADING };
+  
+      case EntitiesActionsTypes.GET_ALL_ENTITIES_SUCCESS:
+        return {
+          ...state,
+          dataStateEntities: EntitiesStateEnum.LOADED,
+          entities: (<GetAllEntitiesActionSuccess>action).payload
+        };
+  
+      case EntitiesActionsTypes.GET_ALL_ENTITIES_ERROR:
+        return { ...state, dataStateEntities: EntitiesStateEnum.ERROR, errorMessage: (<AircraftsAction>action).payload };
+  
+      default:
+        return { ...state };
+    }
+  }
+  

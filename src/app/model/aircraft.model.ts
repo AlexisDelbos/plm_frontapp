@@ -1,9 +1,9 @@
-import { entities } from "./entities.model";
+import { Entitie } from "./entitie.model";
 
 export interface Aircraft {
   id: number;
-  prog:string;
+  prog: string;
   design: boolean;
   development: boolean;
-  entities : entities
+  entities: Entitie
 }

@@ -12,15 +12,15 @@ import { EventService } from 'src/app/services/event.service';
 
 export class ConnexionComponent implements OnInit {
 
-  connexionState$: Observable<connexionsState> | null = null;
+  //connexionState$: Observable<connexionsState> | null = null;
 
- readonly connexionStateEnum = ConnexionStateEnum;
+ // readonly connexionStateEnum = ConnexionStateEnum;
 
   constructor(  private store : Store <any> , private airCraftService : ConnexionService, private eventService : EventService) { }
 
   ngOnInit(): void {
-    this.connexionStateEnum = this.store.pipe(
-      map((state) => state.airbusState)
-    );
+    // this.connexionStateEnum = this.store.pipe(
+    //   map((state) => state.airbusState)
+    // );
   }
 }

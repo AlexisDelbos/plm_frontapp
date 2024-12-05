@@ -1,32 +1,112 @@
-<div class="container">
-  <ng-container *ngIf="aircraft$ | async as state" [ngSwitch]="state.dataState">
-    <ng-container *ngSwitchCase="aircraftsStateEnum.INITIAL">
-      <div class="p-2">Initial</div>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="aircraftsStateEnum.LOADING">
-      <div class="p-2">Loading...</div>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="aircraftsStateEnum.ERROR">
-      <div class="p-2 text-danger">{{ state.errorMessage }}</div>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="aircraftsStateEnum.LOADED">
-      <div class="card" *ngIf="state.selectedAircraft">
-        <div class="card-header">
-          Aircraft Details
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ state.selectedAircraft.prog }}</h5>
-          <div class="card-text">
-            <p><strong>ID:</strong> {{ state.selectedAircraft.id }}</p>
-            <p><strong>Design:</strong> {{ state.selectedAircraft.design }}</p>
-            <p><strong>Development:</strong> {{ state.selectedAircraft.development }}</p>
+<div class="container mt-5">
+  <div class="row">
+    <ng-container *ngIf="aircraft$">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white d-flex">
+            <h5 class="card-title mb-0">Détails de l'avion</h5>
+            <button class="btn btn-secondary btn-sm me-2" (click)="onBack()">
+              <i class="bi bi-arrow-left "></i> Revenir aux avions
+            </button>
           </div>
-          <button class="btn btn-primary" (click)="onBack()">Revenir aux avions</button>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Attribut</th>
+                  <th>Valeur</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>ID</strong></td>
+                  <td>{{ aircraft$.id }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Design</strong></td>
+                  <td>{{ aircraft$.design }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Development</strong></td>
+                  <td>{{ aircraft$.development }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Program</strong></td>
+                  <td>{{ aircraft$.prog }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-start mt-3">
+              
+              <button class="btn btn-primary btn-sm ">
+                Valider les changements
+              </button>
+
+              <input type="checkbox" class="m-1"> Developement 
+              <input type="checkbox"> Desinged 
+            </div>
+          </div>
         </div>
       </div>
     </ng-container>
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+          <h5 class="card-title mb-0">Pièces ajouter</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entity of entities$ | async">
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.name }}</td>
+                <td> Number </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container class="mt-4" *ngIf="entities$ | async as entities;">
+    <div class="card shadow-sm">
+      <div class="card-header bg-info text-white">
+        <h5 class="card-title mb-0">Liste des matériels</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Categorie</th>
+              <th>Prix</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entity of entities">
+              <td>{{ entity.id }}</td>
+              <td>{{ entity.name }}</td>
+              <td>{{ entity.categorie }}</td>
+              <td>{{ entity.price }}</td>
+              <td>
+                <button class="btn btn-success btn-sm me-2">Ajouter</button>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </ng-container>
 </div>

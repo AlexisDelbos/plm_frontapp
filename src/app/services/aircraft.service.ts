@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Aircraft } from '../model/aircraft.model';
 import { Admin } from '../model/admin.model';
+import { Entitie } from '../model/entitie.model';
 
 
 @Injectable({
@@ -11,22 +12,22 @@ import { Admin } from '../model/admin.model';
 })
 export class AircraftService {
 
-  constructor( private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  public getAircrafts(): Observable<Aircraft[]>{
-    return this.http.get<Aircraft[]>(environment.host +"/aircrafts");
+  public getAircrafts(): Observable<Aircraft[]> {
+    return this.http.get<Aircraft[]>(environment.host + "/aircrafts");
   }
 
-  public getDesignedAircrafts(): Observable<Aircraft[]>{
-    return this.http.get<Aircraft[]>(environment.host+"/aircrafts?design=true");
+  public getDesignedAircrafts(): Observable<Aircraft[]> {
+    return this.http.get<Aircraft[]>(environment.host + "/aircrafts?design=true");
   }
 
-  public getDevelopmentAircrafts(): Observable<Aircraft[]>{
-    return this.http.get<Aircraft[]>(environment.host+"/aircrafts?development=true");
+  public getDevelopmentAircrafts(): Observable<Aircraft[]> {
+    return this.http.get<Aircraft[]>(environment.host + "/aircrafts?development=true");
   }
 
-  public getAircraftById(id : number ): Observable<Aircraft>{
-    return this.http.get<Aircraft>(environment.host+"/aircrafts/" + id);
+  public getAircraftById(id: number): Observable<Aircraft> {
+    return this.http.get<Aircraft>(environment.host + "/aircrafts/" + id);
 
   }
 
@@ -35,8 +36,16 @@ export class AircraftService {
     return this.http.get<Aircraft[]>(url);
   }
 
-  public getAdmin(email : String){
+  public getAdmin(email: String) {
     return this.http.get<Admin>(environment.host + `/admins?email=${email}`);
   }
+
+  public getEntities(): Observable<Entitie[]> {
+    return this.http.get<Entitie[]>(environment.host + '/entities');
+  }
+
+
+
+
 
 }

@@ -9,7 +9,7 @@ import { AircraftsNavbarComponent } from './components/aircrafts/aircrafts-navba
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AircraftsReducer } from './ngrx/aircrafts.reducer';
+import { AircraftsReducer, EntitiesReducer } from './ngrx/aircrafts.reducer';
 import { AircraftsEffects } from './ngrx/aircrafts.effects';
 import { AircraftComponent } from './components/aircraft/aircraft.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
@@ -28,7 +28,8 @@ import { ConnexionComponent } from './components/connexion/connexion.component';
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    StoreModule.forRoot({airbusState  : AircraftsReducer}),
+    StoreModule.forRoot({      airbusState: AircraftsReducer,
+      entitiesState: EntitiesReducer}),
     EffectsModule.forRoot([AircraftsEffects]),
     StoreDevtoolsModule.instrument()
   ],

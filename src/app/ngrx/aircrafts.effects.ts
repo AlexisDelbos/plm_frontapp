@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AircraftService } from "../services/aircraft.service";
-import { AircraftsActionsTypes, GetAircraftByIdAction, GetAircraftByIdActionError, GetAircraftByIdActionSuccess, GetAllAircraftsActionError, GetAllAircraftsActionSuccess, GetOnSearchBarAircraft } from "../ngrx/aircrafts.actions";
+import { AircraftsActionsTypes, EntitiesActionsTypes, GetAircraftByIdAction, GetAircraftByIdActionError, GetAircraftByIdActionSuccess, GetAllAircraftsActionError, GetAllAircraftsActionSuccess, GetAllEntitiesActionError, GetAllEntitiesActionSuccess, GetOnSearchBarAircraft } from "../ngrx/aircrafts.actions";
 import { catchError, map, mergeMap, Observable, of } from "rxjs";
 import { Action } from "@ngrx/store";
 import { Injectable } from "@angular/core";
@@ -74,7 +74,7 @@ export class AircraftsEffects {
             })
         )
     );
-    
+
     getAircraftById: Observable<Action> = createEffect(() =>
         this.effectActions.pipe(
             ofType(AircraftsActionsTypes.GET_AIRCRAFT_BY_ID),
@@ -89,5 +89,26 @@ export class AircraftsEffects {
             })
         )
     );
+
+    getAllEntitiesEffect$ = createEffect(() =>
+        this.effectActions.pipe(
+          ofType(EntitiesActionsTypes.GET_ALL_ENTITIES),
+          mergeMap((action) =>
+            this.aircraftService.getEntities().pipe(
+              map((entities) => {
+                console.log('Entités récupérées:', entities); 
+                return new GetAllEntitiesActionSuccess(entities);
+              }),
+              catchError((err) => {
+                console.error('Erreur de récupération des entités:', err);
+                return of(new GetAllEntitiesActionError(err.message));
+              })
+            )
+          )
+        )
+      );
+      
+      
+
     
 }
