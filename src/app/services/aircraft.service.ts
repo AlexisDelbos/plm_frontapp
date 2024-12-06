@@ -44,8 +44,10 @@ export class AircraftService {
     return this.http.get<Entitie[]>(environment.host + '/entities');
   }
 
-
-
+  public updateAircraft(id: number, aircraftData: { design: boolean, development: boolean }): Observable<Aircraft> {
+    return this.http.patch<Aircraft>(environment.host + '/aircrafts/' + id, aircraftData);
+  }
+  
 
 
 }

@@ -1,9 +1,10 @@
 import { Action } from "@ngrx/store";
 import { Aircraft } from "../model/aircraft.model";
 import { Entitie } from "../model/entitie.model";
+import { createAction, props } from '@ngrx/store';
 
 
-export enum AircraftsActionsTypes{
+export enum AircraftsActionsTypes {
     GET_ALL_AIRCRAFTS = "[Aircrafts] Get All Aircrafts",
     GET_DESIGNED_AIRCRAFTS = "[Aircrafts] Get Designed Aircrafts",
     GET_DEVELOPMENT_AIRCRAFTS = "[Aircrafts] Get Developed Aicrafts",
@@ -13,6 +14,10 @@ export enum AircraftsActionsTypes{
     GET_AIRCRAFT_BY_ID = "[Aircrafts] Get Aircraft By Id",
     GET_AIRCRAFT_BY_ID_SUCCESS = "[Aircrafts] Get Aircraft By Id Success",
     GET_AIRCRAFT_BY_ID_ERROR = "[Aircrafts] Get Aircraft By Id Error",
+    UPDATE_AIRCRAFT = '[Aircraft] Update Aircraft',
+    UPDATE_AIRCRAFT_SUCCESS = '[Aircraft] Update Aircraft Success',
+    UPDATE_AIRCRAFT_ERROR = '[Aircraft] Update Aircraft Error'
+
 }
 
 export enum OperationsActionsTypes {
@@ -94,19 +99,39 @@ export class RemoveOperation implements Action {
 }
 
 export class GetAllEntitiesAction implements Action {
-  type = EntitiesActionsTypes.GET_ALL_ENTITIES;
+    type = EntitiesActionsTypes.GET_ALL_ENTITIES;
 }
 
 export class GetAllEntitiesActionSuccess implements Action {
-  type = EntitiesActionsTypes.GET_ALL_ENTITIES_SUCCESS;
-  constructor(public payload: Entitie[]) { }
+    type = EntitiesActionsTypes.GET_ALL_ENTITIES_SUCCESS;
+    constructor(public payload: Entitie[]) { }
 }
 
 export class GetAllEntitiesActionError implements Action {
-  type = EntitiesActionsTypes.GET_ALL_ENTITIES_ERROR;
-  constructor(public payload: any) { }
+    type = EntitiesActionsTypes.GET_ALL_ENTITIES_ERROR;
+    constructor(public payload: any) { }
+}
+
+
+export class UpdateAircraftAction implements Action {
+    readonly type = AircraftsActionsTypes.UPDATE_AIRCRAFT;
+
+    constructor(public payload: Aircraft) { }
+}
+
+
+export class UpdateAircraftActionSuccess implements Action {
+    type: AircraftsActionsTypes = AircraftsActionsTypes.UPDATE_AIRCRAFT_SUCCESS;
+
+    constructor(public payload: Aircraft) { }
+}
+
+export class UpdateAircraftActionError implements Action {
+    type: AircraftsActionsTypes = AircraftsActionsTypes.UPDATE_AIRCRAFT_ERROR;
+
+    constructor(public payload: string) { }
 }
 
 
 
-export type AircraftsAction = GetAllAircraftsAction | GetAircraftByIdAction | GetAircraftByIdActionSuccess |GetAircraftByIdActionError | GetOnSearchBarAircraft | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError | AddOneOperation  ;
+export type AircraftsAction = GetAllAircraftsAction | GetAircraftByIdAction | GetAircraftByIdActionSuccess | GetAircraftByIdActionError | GetOnSearchBarAircraft | GetDesignedAircraftsAction | GetDevelopmentAircraftsAction | GetAllAircraftsActionSuccess | GetAllAircraftsActionError | AddOneOperation;

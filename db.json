@@ -4,11 +4,11 @@
       "id": 1,
       "prog": "A350",
       "design": true,
-      "development": false
+      "development": true
     },
     {
       "id": 2,
-      "prog": "A400M",
+      "prog": "A400",
       "design": false,
       "development": true
     },
@@ -22,7 +22,7 @@
       "id": 4,
       "prog": "A300",
       "design": false,
-      "development": false 
+      "development": false
     },
     {
       "id": 5,
@@ -31,29 +31,66 @@
       "development": true
     }
   ],
-
   "entities": [
-    { "id": 1, "name": "Compas", "categorie": "Navigation", "price": 5000 },
-    { "id": 2, "name": "Gps", "categorie": "Navigation", "price": 10000 },
-    { "id": 3, "name": "Indic vitesse", "categorie": "Pilotage", "price": 7500 },
-    { "id": 4, "name": "Indic altitude", "categorie": "Pilotage", "price": 3500 },
-    { "id": 5, "name": "Altimètre", "categorie": "Pilotage", "price": 3500 },
-    { "id": 6, "name": "Radar météo", "categorie": "Environnement de vol", "price": 15000 },
-    { "id": 7, "name": "Sys anti collision", "categorie": "Environnement de vol", "price": 50000 }
+    {
+      "id": 1,
+      "name": "Compas",
+      "categorie": "Navigation",
+      "price": 5000
+    },
+    {
+      "id": 2,
+      "name": "Gps",
+      "categorie": "Navigation",
+      "price": 10000
+    },
+    {
+      "id": 3,
+      "name": "Indic vitesse",
+      "categorie": "Pilotage",
+      "price": 7500
+    },
+    {
+      "id": 4,
+      "name": "Indic altitude",
+      "categorie": "Pilotage",
+      "price": 3500
+    },
+    {
+      "id": 5,
+      "name": "Altimètre",
+      "categorie": "Pilotage",
+      "price": 3500
+    },
+    {
+      "id": 6,
+      "name": "Radar météo",
+      "categorie": "Environnement de vol",
+      "price": 15000
+    },
+    {
+      "id": 7,
+      "name": "Sys anti collision",
+      "categorie": "Environnement de vol",
+      "price": 50000
+    }
   ],
-
   "users": [
     {
       "id": 1,
       "email": "elbab@gmail.com",
       "password": "1234",
-      "roles": ["ADMIN"]
+      "roles": [
+        "ADMIN"
+      ]
     },
     {
       "id": 2,
       "email": "hugo@gmail.com",
       "password": "1234",
-      "roles": ["ADMIN"]
+      "roles": [
+        "ADMIN"
+      ]
     }
   ]
 }

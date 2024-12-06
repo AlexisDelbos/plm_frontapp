@@ -38,12 +38,12 @@
             </table>
             <div class="d-flex justify-content-start mt-3">
               
-              <button class="btn btn-primary btn-sm ">
-                Valider les changements
-              </button>
+              <button class="btn btn-primary btn-sm" (click)="onValidateChanges(e)">Valider les changements</button>
 
-              <input type="checkbox" class="m-1"> Developement 
-              <input type="checkbox"> Desinged 
+
+              <input type="checkbox" class="m-1"   #e [checked]="aircraft$.development? 'checked' : '' "> Developement
+              <input type="checkbox" [(ngModel)]="isCheckedDesigned" [checked]="aircraft$.design? 'checked' : '' "> Designed
+              
             </div>
           </div>
         </div>
