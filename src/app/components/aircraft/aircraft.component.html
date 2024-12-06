@@ -5,8 +5,8 @@
         <div class="card shadow-sm">
           <div class="card-header bg-primary text-white d-flex">
             <h5 class="card-title mb-0">Détails de l'avion</h5>
-            <button class="btn btn-secondary btn-sm me-2" (click)="onBack()">
-              <i class="bi bi-arrow-left "></i> Revenir aux avions
+            <button class="btn btn-outline-light btn-sm ms-auto" (click)="onBack()">
+              <i class="bi bi-arrow-left"></i> Revenir aux avions
             </button>
           </div>
           <div class="card-body">
@@ -23,6 +23,10 @@
                   <td>{{ aircraft$.id }}</td>
                 </tr>
                 <tr>
+                  <td><strong>Program</strong></td>
+                  <td>{{ aircraft$.prog }}</td>
+                </tr>
+                <tr>
                   <td><strong>Design</strong></td>
                   <td>{{ aircraft$.design }}</td>
                 </tr>
@@ -30,20 +34,20 @@
                   <td><strong>Development</strong></td>
                   <td>{{ aircraft$.development }}</td>
                 </tr>
-                <tr>
-                  <td><strong>Program</strong></td>
-                  <td>{{ aircraft$.prog }}</td>
-                </tr>
               </tbody>
             </table>
-            <div class="d-flex justify-content-start mt-3">
-              
-              <button class="btn btn-primary btn-sm" (click)="onValidateChanges(e)">Valider les changements</button>
+            <div class="d-flex justify-content-start mt-3 align-items-center">
+              <button class="btn btn-primary btn-sm me-2" (click)="onValidateChanges(e)">Valider les changements</button>
 
+              <div class="form-check form-switch me-2">
+                <input type="checkbox" class="form-check-input" #e [checked]="aircraft$.development" id="devCheckbox">
+                <label class="form-check-label" for="devCheckbox">Développement</label>
+              </div>
 
-              <input type="checkbox" class="m-1"   #e [checked]="aircraft$.development? 'checked' : '' "> Developement
-              <input type="checkbox" [(ngModel)]="isCheckedDesigned" [checked]="aircraft$.design? 'checked' : '' "> Designed
-              
+              <div class="form-check form-switch">
+                <input type="checkbox" [(ngModel)]="isCheckedDesigned" [checked]="aircraft$.design" class="form-check-input" id="designCheckbox">
+                <label class="form-check-label" for="designCheckbox">Designed</label>
+              </div>
             </div>
           </div>
         </div>
